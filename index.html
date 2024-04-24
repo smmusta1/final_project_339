@@ -45,10 +45,11 @@
                 <p>I'm a Junior studying computer science. I have always been passionate about coding from a young age and coming to college helped me reignite that passion. This semester I am taking a class on web development and computer security. I am interested in AI and how harnessing its abilities can bring about huge technological change within a very short amount of time.</p>
 
                 <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                    <p class="tab-links active-link" tabindex="0" onclick="opentab('skills')" onkeydown="handleKeyDown(event, 'skills')">Skills</p>
+                    <p class="tab-links" tabindex="0" onclick="opentab('experience')" onkeydown="handleKeyDown(event, 'experience')">Experience</p>
+                    <p class="tab-links" tabindex="0" onclick="opentab('education')" onkeydown="handleKeyDown(event, 'education')">Education</p>
                 </div>
+                
                 <div class="tab-contents active-tab" id="skills">
                     <ul>
                         <li><span>HTML/CSS</span><br>Medium Level Proficiency</li>
@@ -172,6 +173,21 @@
         document.getElementById(tabname).classList.add("active-tab");
     }
 
+    function handleKeyDown(event, tabName) {
+    if (event.key === 'Enter') {
+        opentab(tabName);
+    } else if (event.key === 'ArrowRight') {
+        const nextTab = event.target.nextElementSibling;
+        if (nextTab) {
+            nextTab.focus();
+        }
+    } else if (event.key === 'ArrowLeft') {
+        const prevTab = event.target.previousElementSibling;
+        if (prevTab) {
+            prevTab.focus();
+        }
+    }
+    }
 
     var sidemenu = document.getElementById("sidemenu");
 
